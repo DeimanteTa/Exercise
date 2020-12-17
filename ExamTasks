@@ -1,0 +1,98 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Globalization;
+
+namespace ExamTasks
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Exam2.NewStringFromGiven();
+
+            Exam2.DisplayMonthName();
+
+            Exam2.ReverseWord();
+
+            IVehicle vehicle = new BMWCar();
+            Console.WriteLine(vehicle.Drive());
+            Console.WriteLine(vehicle.Park());
+
+            vehicle = new AnyOtherCar ();
+            Console.WriteLine(vehicle.Drive());
+            Console.WriteLine(vehicle.Park());
+            
+         }
+         
+         
+    class Exam2
+    {
+        public static void NewStringFromGiven()
+        {
+            Console.WriteLine("Enter a string");
+
+            var words = Console.ReadLine();
+            var letter1 = words[0];
+
+            Console.WriteLine($"{letter1}{words}{letter1}");
+        }
+
+        public static void DisplayMonthName()
+        {
+            Console.WriteLine("Please enter a number of a month");
+
+            var monthNumber = int.Parse(Console.ReadLine());
+            var monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(monthNumber);
+
+            Console.WriteLine($"\nThank you!\nThe name of the month is {monthName}");
+        }
+
+        public static void ReverseWord()
+        {
+            Console.WriteLine("Please enter a word");
+
+            string text =  Console.ReadLine();
+            char[] charArray = text.ToCharArray();
+            Array.Reverse(charArray);
+            Console.WriteLine($"{new string(charArray)}") ;
+
+         }
+    }
+
+    interface IVehicle
+    {
+        string Drive();
+        string Park();
+    }
+
+    class MyCars
+    {
+
+    }
+    class BMWCar : MyCars , IVehicle
+    {
+        public string Drive()
+        {
+            return "Driving in to the bus stop";
+        }
+        public string Park()
+        {
+            return "Parking on as many parking spots as possible at the same time";
+        }
+    }
+
+    class AnyOtherCar : MyCars , IVehicle
+    {
+        public string Drive()
+        {
+            return "Driving to the destination";
+        }
+        public string Park()
+        {
+            return "Parking on a single parking spot";
+        }
+    }
+
+
+}
